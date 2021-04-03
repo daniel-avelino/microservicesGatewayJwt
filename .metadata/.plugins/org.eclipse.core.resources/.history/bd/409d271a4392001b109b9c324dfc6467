@@ -1,0 +1,26 @@
+package com.microservices.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.List;
+import com.microservices.repositories.UserRepository;
+import com.microservices.enities.User;
+
+@Service
+public class UserService {
+
+	@Autowired
+	private UserRepository repository;
+	
+	public List<User> findAll(){
+		return repository.findAll();
+	}
+	
+	@SuppressWarnings("unused")
+	private User findByEmail(String email) {
+		return repository.findByEmail(email);
+	}
+	
+	
+	
+}

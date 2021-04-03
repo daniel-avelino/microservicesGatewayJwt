@@ -1,0 +1,23 @@
+package com.microservices.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.microservices.entities.User;
+import com.microservices.feign.feignClient;
+
+@Service
+public class userService {
+
+	@Autowired
+	private feignClient feignClient;
+
+	public User findByEmail(String email) {
+		User user = feignClient.findByEmail(email).getBody();
+		if (user == null) {
+			throw new IllegalArgumentException("Email not found");
+		} else {
+			return user;
+		}
+	}
+}

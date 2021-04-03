@@ -1,0 +1,15 @@
+package com.microservices.feign;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.microservices.entities.User;
+
+@FeignClient(name = "user-ms", path = "/users")
+public interface feignClient {
+
+	@GetMapping
+	ResponseEntity<User> findByEmail(@RequestParam("email") String email);
+}
